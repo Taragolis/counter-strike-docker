@@ -29,10 +29,6 @@ ADD files/steam_appid.txt /opt/hlds/steam_appid.txt
 # Add default config
 ADD files/server.cfg /opt/hlds/cstrike/server.cfg
 
-# Add maps
-ADD maps/* /opt/hlds/cstrike/maps/
-ADD files/mapcycle.txt /opt/hlds/cstrike/mapcycle.txt
-
 # Install metamod
 RUN mkdir -p /opt/hlds/cstrike/addons/metamod/dlls
 RUN curl -sqL "http://prdownloads.sourceforge.net/metamod/metamod-$metamod_version-linux.tar.gz?download" | tar -C /opt/hlds/cstrike/addons/metamod/dlls -zxvf -
@@ -48,13 +44,21 @@ ADD files/dproto.cfg /opt/hlds/cstrike/dproto.cfg
 # Install AMX mod X
 RUN curl -sqL "http://www.amxmodx.org/release/amxmodx-$amxmod_version-base-linux.tar.gz" | tar -C /opt/hlds/cstrike/ -zxvf -
 RUN curl -sqL "http://www.amxmodx.org/release/amxmodx-$amxmod_version-cstrike-linux.tar.gz" | tar -C /opt/hlds/cstrike/ -zxvf -
-ADD files/maps.ini /opt/hlds/cstrike/addons/amxmodx/configs/maps.ini
 
 # Cleanup
-RUN apt-get remove -y curl
+RUN apt-get remove -y curl apt-utils && \
+    apt-get -y autoremove
 
 # Add Execution script
 ADD files/hlds_run.sh /bin/hlds_run.sh
+
+# Add AMX mod X configurations
+ADD files/maps.ini /opt/hlds/cstrike/addons/amxmodx/configs/maps.ini
+ADD files/amxx.cfg /opt/hlds/cstrike/addons/amxmodx/configs/amxx.cfg
+
+# Add maps
+ADD maps/*.bsp /opt/hlds/cstrike/maps/
+ADD maps/mapcycle.txt /opt/hlds/cstrike/mapcycle.txt
 
 WORKDIR /opt/hlds
 

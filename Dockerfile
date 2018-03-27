@@ -23,7 +23,6 @@ RUN /opt/steam/steamcmd.sh +login $steam_user $steam_password +force_install_dir
 RUN mkdir -p ~/.steam && ln -s /opt/hlds ~/.steam/sdk32
 RUN ln -s /opt/steam/ /opt/hlds/steamcmd
 ADD files/steam_appid.txt /opt/hlds/steam_appid.txt
-ADD hlds_run.sh /bin/hlds_run.sh
 
 # Add default config
 ADD files/server.cfg /opt/hlds/cstrike/server.cfg
@@ -51,6 +50,9 @@ ADD files/maps.ini /opt/hlds/cstrike/addons/amxmodx/configs/maps.ini
 
 # Cleanup
 RUN apt remove -y curl
+
+# Add Execution script
+ADD hlds_run.sh /bin/hlds_run.sh
 
 WORKDIR /opt/hlds
 

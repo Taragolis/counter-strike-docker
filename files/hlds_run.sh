@@ -19,11 +19,18 @@ GAME="${GAME:-cstrike}"
 MAXPLAYERS="${MAXPLAYERS:-32}"
 START_MAP="${START_MAP:-de_dust2}"
 SERVER_NAME="${SERVER_NAME:-Counter-Strike 1.6 Server}"
+FRIENDLY_FIRE="${FRIENDLY_FIRE:-1}"
+AUTO_TEAM_BALANCE="${AUTO_TEAM_BALANCE:-0}"
+FREEZE_TIME="${FREEZE_TIME:-3}"
 
-OPTIONS=( "-game" "${GAME}" "+maxplayers" "${MAXPLAYERS}" "+map" "${START_MAP}" "+hostname" "\"${SERVER_NAME}\"")
+OPTIONS=( "-game" "${GAME}" "+maxplayers" "${MAXPLAYERS}" "+map" "${START_MAP}" "+mp_friendlyfire" "${FRIENDLY_FIRE}" "+mp_autoteambalance" "${AUTO_TEAM_BALANCE}" "+mp_freezetime" "${FREEZE_TIME}" "+hostname" "\"${SERVER_NAME}\"" )
 
 if [ -z "${RESTART_ON_FAIL}" ]; then
     OPTIONS+=('-norestart')
+fi
+
+if [ -n "${LAN+set}" ]; then
+    OPTIONS+=(' -insecure +sv_lan 1')
 fi
 
 if [ -n "${ADMIN_STEAM}" ]; then

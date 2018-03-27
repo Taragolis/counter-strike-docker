@@ -7,7 +7,9 @@ ARG steam_password=
 ARG metamod_version=1.20
 ARG amxmod_version=1.8.2
 
-RUN apt update && apt install -y lib32gcc1 curl
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends apt-utils && \
+    apt-get install -y lib32gcc1 curl
 
 # Install SteamCMD
 RUN mkdir -p /opt/steam && cd /opt/steam && \
@@ -49,7 +51,7 @@ RUN curl -sqL "http://www.amxmodx.org/release/amxmodx-$amxmod_version-cstrike-li
 ADD files/maps.ini /opt/hlds/cstrike/addons/amxmodx/configs/maps.ini
 
 # Cleanup
-RUN apt remove -y curl
+RUN apt-get remove -y curl
 
 # Add Execution script
 ADD files/hlds_run.sh /bin/hlds_run.sh

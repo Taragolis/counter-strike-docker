@@ -1,0 +1,17 @@
+cstrike:
+  image: 'hlds:alpha'
+  environment:
+    - SERVER_NAME="Server Name"
+    - RCON_PW="p@ssw0rd"
+    - START_MAP="fy_pool_day"
+    - ADMIN_STEAM=0:1:1234566
+    - MAXPLAYERS=16
+    - FRIENDLY_FIRE=1
+    - AUTO_TEAM_BALANCE=1
+    - FREEZE_TIME=0
+    - LAN="Ok"
+  ports:
+    - "26900:26900/udp"
+    - "27020:27020/udp"
+    - "27015:27015/udp"
+    - "27015:27015"

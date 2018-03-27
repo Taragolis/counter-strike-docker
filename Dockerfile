@@ -52,7 +52,7 @@ ADD files/maps.ini /opt/hlds/cstrike/addons/amxmodx/configs/maps.ini
 RUN apt remove -y curl
 
 # Add Execution script
-ADD hlds_run.sh /bin/hlds_run.sh
+ADD files/hlds_run.sh /bin/hlds_run.sh
 
 WORKDIR /opt/hlds
 

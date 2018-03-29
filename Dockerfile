@@ -53,12 +53,12 @@ RUN apt-get remove -y curl apt-utils && \
 ADD files/hlds_run.sh /bin/hlds_run.sh
 
 # Add AMX mod X configurations
-ADD files/maps.ini /opt/hlds/cstrike/addons/amxmodx/configs/maps.ini
 ADD files/amxx.cfg /opt/hlds/cstrike/addons/amxmodx/configs/amxx.cfg
 
 # Add maps
 ADD maps/*.bsp /opt/hlds/cstrike/maps/
-ADD maps/mapcycle.txt /opt/hlds/cstrike/mapcycle.txt
+ADD maps/conf/mapcycle.txt /opt/hlds/cstrike/mapcycle.txt
+ADD maps/conf/mapcycle.txt /opt/hlds/cstrike/addons/amxmodx/configs/maps.ini
 
 WORKDIR /opt/hlds
 

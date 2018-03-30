@@ -3,13 +3,14 @@ cstrike:
   environment:
     - SERVER_NAME="Docker CS 1.6 Server Name"
     - RCON_PW="p@ssw0rd"
-    - START_MAP="fy_pool_day"
+    - START_MAP="fy_iceworld2k"
     - ADMIN_STEAM=0:1:23456789
     - MAXPLAYERS=16
     - FRIENDLY_FIRE=1
     - AUTO_TEAM_BALANCE=1
     - FREEZE_TIME=0
     - LAN="Ok"
+    - ROUND_TIME=2.50
   ports:
     - "26900:26900/udp"
     - "27020:27020/udp"
